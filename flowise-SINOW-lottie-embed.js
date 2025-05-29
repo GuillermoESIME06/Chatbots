@@ -23,19 +23,19 @@
     src: config.lottieSrc || "https://mediastrapi.koppi.mx/uploads/Chatbot_Off_v2_01b544fff6.json",
     background: config.lottieBackground || "transparent",
     speed: config.lottieSpeed || "1",
-    loop: config.lottieLoop !== "false", // Default true, overridable if 'false'
-    autoplay: config.lottieAutoplay !== "false", // Default true, overridable if 'false'
-    width: config.lottieWidth || "100px",     // Mantenemos como string con "px" para el estilo directo del Lottie
-    height: config.lottieHeight || "100px",   // Mantenemos como string con "px"
-    // Para la configuración de Flowise, 'right' y 'bottom' son números.
-    // 'size' de Flowise también es un número.
-    right: parseInt(config.lottieRight) || 10,      // Convertir a número para Flowise config
-    bottom: parseInt(config.lottieBottom) || 10,    // Convertir a número para Flowise config
-    // Para 'size' de Flowise, usamos el ancho del Lottie (sin "px").
+    loop: config.lottieLoop !== "false",
+    autoplay: config.lottieAutoplay !== "false",
+    width: config.lottieWidth || "100px",     // String para el estilo CSS directo del Lottie
+    height: config.lottieHeight || "100px",   // String para el estilo CSS directo del Lottie
+    // Para la configuración de Flowise theme.button, 'right' y 'bottom' son números.
+    // 'size' de Flowise theme.button también es un número.
+    right: parseInt(config.lottieRight) || 10,      // Convertir a número
+    bottom: parseInt(config.lottieBottom) || 10,    // Convertir a número
+    // Para 'size' de Flowise theme.button, usamos el ancho del Lottie (convertido a número).
     sizeForFlowise: parseInt(config.lottieWidth) || 100 // Convertir a número
   };
 
-  // --- Default Flowise Configuration (merged with script attributes) ---
+  // --- Default Flowise Configuration ---
   const flowiseConfig = {
     chatflowid: config.chatflowid || "c982cf4f-a8ae-4d71-a763-669867146924",
     apiHost: config.apiHost || "https://cloud.flowiseai.com",
@@ -46,13 +46,11 @@
         /* Observers Config - keep empty if not used in original */
     },
     theme: {
-      button: {
+      button: { // Configuración para el botón (oculto) de Flowise
         backgroundColor: '', // Irrelevante, estará oculto
-        // ***** CORRECCIÓN APLICADA AQUÍ *****
-        right: lottieSettings.right,        // Usa el valor numérico de lottieSettings
-        bottom: lottieSettings.bottom,      // Usa el valor numérico de lottieSettings
-        size: lottieSettings.sizeForFlowise,// Usa el valor numérico (basado en el ancho del lottie)
-        // ***** FIN DE LA CORRECCIÓN *****
+        right: lottieSettings.right,        // Usa el valor numérico de lottieSettings.right
+        bottom: lottieSettings.bottom,      // Usa el valor numérico de lottieSettings.bottom
+        size: lottieSettings.sizeForFlowise,// Usa el valor numérico de lottieSettings.sizeForFlowise
         dragAndDrop: true,
         iconColor: 'white',
         customIconSrc: '',
@@ -63,16 +61,16 @@
         }
       },
       customCSS: `.flowise-chatbot-button { display: none !important; }`, // Oculta el botón de Flowise
-      chatWindow: {
+      chatWindow: { // Configuración de la VENTANA DE CHAT (independiente de data-lottie-*)
         showTitle: true,
         showAgentMessages: true,
-        title: config.chatWindowTitle || 'Si Now Misión Punta Norte', // Overridable
-        welcomeMessage: config.chatWelcomeMessage || '¡Hola! Soy tu asistente virtual de Grupo SI NOW. Estoy aquí para brindarte información sobre nuestros lotes habitacionales en La Paz, Baja California Sur, con un enfoque en nuestro desarrollo Misión Punta Norte.', // Overridable
+        title: config.chatWindowTitle || 'Si Now Misión Punta Norte',
+        welcomeMessage: config.chatWelcomeMessage || '¡Hola! Soy tu asistente virtual de Grupo SI NOW. Estoy aquí para brindarte información sobre nuestros lotes habitacionales en La Paz, Baja California Sur, con un enfoque en nuestro desarrollo Misión Punta Norte.',
         errorMessage: 'Por favor vuelve a intentarlo más tarde.',
         backgroundColor: '#ffffff',
-        backgroundImage: 'enter image path or link', // Can be overridden if needed, or kept as is
-        height: 700,
-        width: 400,
+        backgroundImage: 'enter image path or link',
+        height: 700, // Tamaño fijo para la ventana de chat
+        width: 400,  // Tamaño fijo para la ventana de chat
         fontSize: 16,
         clearChatOnReload: false,
         sourceDocsTitle: 'Sources:',
@@ -88,7 +86,7 @@
           avatarSrc: 'https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png'
         },
         textInput: {
-          placeholder: 'Aks me anything...', // Corregido "Aks" a "Ask" si es un error tipográfico
+          placeholder: config.textInputPlaceholder || 'Ask me anything...', // Permitimos configurar el placeholder
           backgroundColor: '#ffffff',
           textColor: '#303235',
           sendButtonColor: '#3B81F6',
@@ -96,9 +94,9 @@
           maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 10000 characters.',
           autoFocus: true,
           sendMessageSound: true,
-          sendSoundLocation: 'send_message.mp3', // Ensure this path is accessible or use full URL
+          sendSoundLocation: 'send_message.mp3',
           receiveMessageSound: true,
-          receiveSoundLocation: 'receive_message.mp3' // Ensure this path is accessible or use full URL
+          receiveSoundLocation: 'receive_message.mp3'
         },
         feedback: {
           color: '#303235'
@@ -110,8 +108,8 @@
         footer: {
           textColor: '#303235',
           text: 'Powered by',
-          company: config.footerCompany || 'koppi', // Overridable
-          companyLink: config.footerCompanyLink || 'https://koppi.mx' // Overridable
+          company: config.footerCompany || 'koppi',
+          companyLink: config.footerCompanyLink || 'https://koppi.mx'
         }
       }
     }
@@ -126,17 +124,12 @@
   `;
   document.head.appendChild(flowiseScript);
 
-  // 2) Function for responsive size (opcional, si la necesitas para el Lottie)
-  // function setResponsiveSize(el, wStyle, hStyle, bStyle, rStyle) {
-  //   el.style.width  = wStyle;
-  //   el.style.height = hStyle;
-  //   el.style.bottom = bStyle;
-  //   el.style.right  = rStyle;
-  // }
+  // 2) Función para tamaño responsivo (opcional, no usada por defecto para el Lottie aquí)
+  // function setResponsiveSize(el, wStyle, hStyle, bStyle, rStyle) { /* ... */ }
 
   // 3) Inject Lottie Player script and create the Lottie button
   function initLottieButton() {
-    if (typeof LottiePlayer === 'undefined') { // Check if Lottie Player is already loaded
+    if (typeof LottiePlayer === 'undefined') {
         const lottiePlayerScript = document.createElement("script");
         lottiePlayerScript.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
         lottiePlayerScript.onload = createLottieElement;
@@ -161,22 +154,17 @@
     if (lottieSettings.loop) lottieBtn.setAttribute("loop", "");
     if (lottieSettings.autoplay) lottieBtn.setAttribute("autoplay", "");
 
+    // Aplicar estilos al botón Lottie
     Object.assign(lottieBtn.style, {
-      width: lottieSettings.width,    // Ya es string con "px" o el valor de data-lottie-width
-      height: lottieSettings.height,  // Ya es string con "px" o el valor de data-lottie-height
+      width: lottieSettings.width,    // Ej: "130px"
+      height: lottieSettings.height,  // Ej: "130px"
       position: "fixed",
-      bottom: lottieSettings.bottom + "px", // lottieSettings.bottom es número, se añade "px"
-      right: lottieSettings.right + "px",   // lottieSettings.right es número, se añade "px"
+      bottom: lottieSettings.bottom + "px", // Ej: 50 + "px" -> "50px"
+      right: lottieSettings.right + "px",   // Ej: 50 + "px" -> "50px"
       cursor: "pointer",
       zIndex: "10000"
     });
     container.appendChild(lottieBtn);
-
-    // Si quieres usar la lógica de tamaño responsivo para el Lottie:
-    // const update = () => setResponsiveSize(lottieBtn, (window.innerWidth * 15 / 100) + "px", "auto", (window.innerHeight * 5 / 100) + "px", (window.innerWidth * 5 / 100) + "px");
-    // window.addEventListener("load", update);
-    // window.addEventListener("resize", update);
-    // update(); // Initial call
 
     lottieBtn.addEventListener("click", () => {
       const nativeBtn = document.querySelector(".flowise-chatbot-button");
@@ -188,7 +176,6 @@
     });
   }
 
-  // Ensure DOM is ready for Lottie button creation
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLottieButton);
   } else {
