@@ -1,16 +1,12 @@
 // flowise-lottie-embed.js
-
 (function() {
-  // Helper function to get attributes from the script tag that's running this code
   function getScriptAttributes() {
     const scriptTag = document.currentScript;
     if (!scriptTag) return {};
-
     const attributes = {};
     for (let i = 0; i < scriptTag.attributes.length; i++) {
       const attr = scriptTag.attributes[i];
       if (attr.name.startsWith('data-')) {
-        // Convert kebab-case to camelCase (e.g., data-chatflow-id -> chatflowId)
         const camelCaseName = attr.name.substring(5).replace(/-./g, x => x[1].toUpperCase());
         attributes[camelCaseName] = attr.value;
       }
@@ -20,10 +16,30 @@
 
   const config = getScriptAttributes();
 
-  // --- Default Configuration (merged with script attributes) ---
+  // --- Lottie Settings ---
+  // Define lottieSettings primero para que sus valores puedan ser usados en flowiseConfig.
+  // Convertimos a números para 'right' y 'bottom' y 'size' si es necesario para la config de Flowise.
+  // Para los estilos CSS del Lottie, se les añadirá "px" más adelante.
+  const lottieSettings = {
+    src: config.lottieSrc || "https://mediastrapi.koppi.mx/uploads/Chatbot_Off_v2_01b544fff6.json",
+    background: config.lottieBackground || "transparent",
+    speed: config.lottieSpeed || "1",
+    loop: config.lottieLoop !== "false",
+    autoplay: config.lottieAutoplay !== "false",
+    width: config.lottieWidth || "100px",     // Mantenemos como string con "px" para el estilo directo del Lottie
+    height: config.lottieHeight || "100px",   // Mantenemos como string con "px"
+    // Para la configuración de Flowise, es mejor si 'right' y 'bottom' son números.
+    // Y 'size' de Flowise también es un número.
+    right: parseInt(config.lottieRight) || 10,      // Convertir a número para Flowise config
+    bottom: parseInt(config.lottieBottom) || 10,    // Convertir a número para Flowise config
+    // Para 'size' de Flowise, podríamos usar el ancho del Lottie (sin "px").
+    sizeForFlowise: parseInt(config.lottieWidth) || 100 // Convertir a número
+  };
+
+  // --- Default Flowise Configuration (merged with script attributes) ---
   const flowiseConfig = {
-    chatflowid: config.chatflowid || "c982cf4f-a8ae-4d71-a763-669867146924", // Overridable
-    apiHost: config.apiHost || "https://cloud.flowiseai.com", // Overridable
+    chatflowid: config.chatflowid || "c982cf4f-a8ae-4d71-a763-669867146924",
+    apiHost: config.apiHost || "https://cloud.flowiseai.com",
     chatflowConfig: {
         /* Chatflow Config - keep empty if not used in original */
     },
@@ -99,21 +115,7 @@
       }
     }
   };
-
-  const lottieSettings = {
-    src: config.lottieSrc || "https://mediastrapi.koppi.mx/uploads/Chatbot_Off_v2_01b544fff6.json", // Overridable
-    background: config.lottieBackground || "transparent",
-    speed: config.lottieSpeed || "1",
-    loop: config.lottieLoop !== "false", // Default true, overridable if 'false'
-    autoplay: config.lottieAutoplay !== "false", // Default true, overridable if 'false'
-    width: config.lottieWidth || "100px", // Overridable
-    height: config.lottieHeight || "100px", // Overridable
-    bottom: config.lottieBottom || "10px", // Overridable
-    right: config.lottieRight || "10px" // Overridable
-  };
-
-
-  // 1) Load Flowise dynamically
+ // 1) Load Flowise dynamically
   const flowiseScript = document.createElement('script');
   flowiseScript.type = 'module';
   flowiseScript.innerHTML = `
@@ -122,25 +124,17 @@
   `;
   document.head.appendChild(flowiseScript);
 
-
-  // 2) Function for responsive size (if needed, though fixed sizes are used here)
-  //    Kept your structure for setResponsiveSize if you want to reintegrate % based sizing
-  function setResponsiveSize(el, wStyle, hStyle, bStyle, rStyle) {
-    el.style.width  = wStyle;
-    el.style.height = hStyle;
-    el.style.bottom = bStyle;
-    el.style.right  = rStyle;
-  }
+  // ... (setResponsiveSize si la usas) ...
 
   // 3) Inject Lottie Player script and create the Lottie button
   function initLottieButton() {
-    if (typeof LottiePlayer === 'undefined') { // Check if Lottie Player is already loaded
-        const lottiePlayerScript = document.createElement("script");
-        lottiePlayerScript.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
-        lottiePlayerScript.onload = createLottieElement;
-        document.head.appendChild(lottiePlayerScript);
+    if (typeof LottiePlayer === 'undefined') {
+      const lottiePlayerScript = document.createElement("script");
+      lottiePlayerScript.src = "https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js";
+      lottiePlayerScript.onload = createLottieElement;
+      document.head.appendChild(lottiePlayerScript);
     } else {
-        createLottieElement();
+      createLottieElement();
     }
   }
 
@@ -160,21 +154,16 @@
     if (lottieSettings.autoplay) lottieBtn.setAttribute("autoplay", "");
 
     Object.assign(lottieBtn.style, {
-      width: lottieSettings.width,
-      height: lottieSettings.height,
+      // Para los estilos CSS del Lottie, usamos los valores string (con "px") o los numéricos con "px" añadido.
+      width: typeof lottieSettings.width === 'string' ? lottieSettings.width : lottieSettings.width + "px",
+      height: typeof lottieSettings.height === 'string' ? lottieSettings.height : lottieSettings.height + "px",
       position: "fixed",
-      bottom: lottieSettings.bottom,
-      right: lottieSettings.right,
+      bottom: lottieSettings.bottom + "px", // lottieSettings.bottom ya es número, le añadimos "px"
+      right: lottieSettings.right + "px",   // lottieSettings.right ya es número, le añadimos "px"
       cursor: "pointer",
       zIndex: "10000"
     });
     container.appendChild(lottieBtn);
-
-    // If you want to use the percentage based responsive logic:
-    // const update = () => setResponsiveSize(lottieBtn, (window.innerWidth * 15 / 100) + "px", "auto", (window.innerHeight * 5 / 100) + "px", (window.innerWidth * 5 / 100) + "px");
-    // window.addEventListener("load", update);
-    // window.addEventListener("resize", update);
-    // update(); // Initial call
 
     lottieBtn.addEventListener("click", () => {
       const nativeBtn = document.querySelector(".flowise-chatbot-button");
@@ -186,7 +175,6 @@
     });
   }
 
-  // Ensure DOM is ready for Lottie button creation
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initLottieButton);
   } else {
