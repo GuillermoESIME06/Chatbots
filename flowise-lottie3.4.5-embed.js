@@ -261,7 +261,63 @@
                             }
                         },
                         tooltip: { showTooltip: false }, // Deshabilitar el tooltip original de Flowise si lo tuviera
-                        customCSS: '',
+                        customCSS: `
+                /* Header del chat */
+                .chatbot-header {
+                    background: linear-gradient(90deg, #4e67eb 0%, #3cb371 100%) !important;
+                    padding: 16px !important;
+                    border-top-left-radius: 10px !important;
+                    border-top-right-radius: 10px !important;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+
+                /* Campo de entrada */
+                .chatbot-input {
+                    border-radius: 24px !important;
+                    margin: 10px !important;
+                    background-color: #f8f9fa !important;
+                    border: 1px solid #e9ecef !important;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+                    padding: 8px !important;
+                }
+
+            
+                /* Burbujas de mensaje del bot */
+                .chatbot-host-bubble {
+                    border-radius: 20px !important;
+                    padding: 12px 16px !important;
+                    max-width: 85% !important;
+                    margin-bottom: 8px !important;
+                    background-color: #f8f9fa !important;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+                }
+
+                /* Burbujas de mensaje del usuario */
+                .chatbot-guest-bubble {
+                    border-radius: 20px !important;
+                    padding: 12px 16px !important;
+                    max-width: 85% !important;
+                    margin-bottom: 8px !important;
+                 
+                    color: white !important;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+                }
+
+                /* Contenedor del chat */
+                .chatbot-container {
+                    border-radius: 10px !important;
+                    overflow: hidden !important;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+                }
+
+                /* Scroll suave */
+                .chat-messages-container {
+                    scroll-behavior: smooth !important;
+                }
+            `,
                         chatWindow: {
                             showTitle: config.themeChatWindowShowTitle,
                             showAgentMessages: config.themeChatWindowShowAgentMessages,
