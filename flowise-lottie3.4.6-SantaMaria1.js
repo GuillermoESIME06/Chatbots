@@ -1,4 +1,4 @@
-// Contenido para flowise-lottie3.2-embed.js
+// Contenido para flowise-lottie3.4.5-embed.js
 (function() {
     'use strict';
 
@@ -41,59 +41,59 @@
         return;
     }
 
+    // --- CONFIGURACIÓN CON NUEVOS VALORES PREDETERMINADOS ---
     const config = {
         // Core Flowise
-        chatflowid: getConfig(currentScript, 'chatflowid', null),
+        chatflowid: getConfig(currentScript, 'chatflowid', 'e1d25678-57f5-43a9-b9a4-ba4e7dc0e306'), // Default modificado
         apiHost: getConfig(currentScript, 'apiHost', 'https://cloud.flowiseai.com'),
-        chatflowConfig: getConfig(currentScript, 'chatflowConfigJson', {}, 'json'), // data-chatflow-config-json
-        observersConfig: getConfig(currentScript, 'observersConfigJson', {}, 'json'), // data-observers-config-json
+        chatflowConfig: getConfig(currentScript, 'chatflowConfigJson', {}, 'json'), 
+        observersConfig: getConfig(currentScript, 'observersConfigJson', {}, 'json'),
 
         // Lottie
-        lottieAnimationPath: getConfig(currentScript, 'lottieAnimationPath', null),
+        lottieAnimationPath: getConfig(currentScript, 'lottieAnimationPath', 'https://mediastrapi.koppi.mx/uploads/Chatbot_Off_v2_01b544fff6.json'), // Default modificado
         lottieButtonId: 'flowise-lottie-trigger-' + Date.now(),
-        lottieButtonBottom: getConfig(currentScript, 'lottieButtonBottom', '20px'),
-        lottieButtonRight: getConfig(currentScript, 'lottieButtonRight', '20px'),
-        lottieButtonWidth: getConfig(currentScript, 'lottieButtonWidth', '70px'),
-        lottieButtonHeight: getConfig(currentScript, 'lottieButtonHeight', '70px'),
+        lottieButtonBottom: getConfig(currentScript, 'lottieButtonBottom', '45vh'), // Default modificado
+        lottieButtonRight: getConfig(currentScript, 'lottieButtonRight', '1px'), // Default modificado
+        lottieButtonWidth: getConfig(currentScript, 'lottieButtonWidth', '80px'), // Default modificado
+        lottieButtonHeight: getConfig(currentScript, 'lottieButtonHeight', '80px'), // Default modificado
         lottieButtonZIndex: getConfig(currentScript, 'lottieButtonZIndex', '10000'),
 
-        // Lottie Tooltip (NUEVO)
-        lottieTooltipEnabled: getConfig(currentScript, 'lottieTooltipEnabled', true, 'boolean'),            // data-lottie-tooltip-enabled
-        lottieTooltipText: getConfig(currentScript, 'lottieTooltipText', 'Abrir Chat'),                    // data-lottie-tooltip-text
-        lottieTooltipBackgroundColor: getConfig(currentScript, 'lottieTooltipBackgroundColor', '#333333'),  // data-lottie-tooltip-background-color
-        lottieTooltipTextColor: getConfig(currentScript, 'lottieTooltipTextColor', '#ffffff'),              // data-lottie-tooltip-text-color
-        lottieTooltipFontSize: getConfig(currentScript, 'lottieTooltipFontSize', '12px'),                  // data-lottie-tooltip-font-size
-        lottieTooltipPadding: getConfig(currentScript, 'lottieTooltipPadding', '5px 10px'),                // data-lottie-tooltip-padding
-        lottieTooltipBorderRadius: getConfig(currentScript, 'lottieTooltipBorderRadius', '4px'),           // data-lottie-tooltip-border-radius
-        lottieTooltipZIndexOffset: getConfig(currentScript, 'lottieTooltipZIndexOffset', 1, 'number'),     // data-lottie-tooltip-z-index-offset (offset from lottie button z-index)
-        lottieTooltipPositionOffset: getConfig(currentScript, 'lottieTooltipPositionOffset', 8, 'number'), // data-lottie-tooltip-position-offset (px above button)
-
+        // Lottie Tooltip
+        lottieTooltipEnabled: getConfig(currentScript, 'lottieTooltipEnabled', true, 'boolean'), // Default modificado
+        lottieTooltipText: getConfig(currentScript, 'lottieTooltipText', '¡Pregunta cualquier cosa!'), // Default modificado
+        lottieTooltipBackgroundColor: getConfig(currentScript, 'lottieTooltipBackgroundColor', '#ffffff'), // Default modificado
+        lottieTooltipTextColor: getConfig(currentScript, 'lottieTooltipTextColor', '#000000'), // Default modificado
+        lottieTooltipFontSize: getConfig(currentScript, 'lottieTooltipFontSize', '18px'), // Default modificado
+        lottieTooltipPadding: getConfig(currentScript, 'lottieTooltipPadding', '6px 12px'), // Default modificado
+        lottieTooltipBorderRadius: getConfig(currentScript, 'lottieTooltipBorderRadius', '15px'), // Default modificado
+        lottieTooltipZIndexOffset: getConfig(currentScript, 'lottieTooltipZIndexOffset', 2, 'number'), // Default modificado
+        lottieTooltipPositionOffset: getConfig(currentScript, 'lottieTooltipPositionOffset', 1, 'number'), // Default modificado
 
         // Theme -> Button (original Flowise button)
-        themeButtonBackgroundColor: getConfig(currentScript, 'themeButtonBackgroundColor', '#3B81F6'),
-        themeButtonRight: getConfig(currentScript, 'themeButtonRight', 20, 'number'),
-        themeButtonBottom: getConfig(currentScript, 'themeButtonBottom', 20, 'number'),
+        themeButtonBackgroundColor: getConfig(currentScript, 'themeButtonBackgroundColor', '#1e46e3'), // Default modificado
+        themeButtonRight: getConfig(currentScript, 'themeButtonRight', 10, 'number'), // Default modificado
+        themeButtonBottom: getConfig(currentScript, 'themeButtonBottom', 10, 'number'), // Default modificado
         themeButtonSize: getConfig(currentScript, 'themeButtonSize', 48, 'number'),
         themeButtonDragAndDrop: getConfig(currentScript, 'themeButtonDragAndDrop', true, 'boolean'),
         themeButtonIconColor: getConfig(currentScript, 'themeButtonIconColor', 'white'),
         themeButtonCustomIconSrc: getConfig(currentScript, 'themeButtonCustomIconSrc', ''),
-        themeButtonAutoOpen: getConfig(currentScript, 'themeButtonAutoOpen', false, 'boolean'), // Forzado a false si usamos Lottie
+        themeButtonAutoOpen: getConfig(currentScript, 'themeButtonAutoOpen', false, 'boolean'), 
         themeButtonOpenDelay: getConfig(currentScript, 'themeButtonOpenDelay', 2, 'number'),
         themeButtonAutoOpenOnMobile: getConfig(currentScript, 'themeButtonAutoOpenOnMobile', false, 'boolean'),
         
         // Theme -> ChatWindow
         themeChatWindowShowTitle: getConfig(currentScript, 'themeChatWindowShowTitle', true, 'boolean'),
         themeChatWindowShowAgentMessages: getConfig(currentScript, 'themeChatWindowShowAgentMessages', true, 'boolean'),
-        themeChatWindowTitle: getConfig(currentScript, 'themeChatWindowTitle', 'Chatbot'),
+        themeChatWindowTitle: getConfig(currentScript, 'themeChatWindowTitle', 'Novotech Santa María'), // Default modificado
         themeChatWindowTitleAvatarSrc: getConfig(currentScript, 'themeChatWindowTitleAvatarSrc', ''),
-        themeChatWindowWelcomeMessage: getConfig(currentScript, 'themeChatWindowWelcomeMessage', '¡Hola!'),
+        themeChatWindowWelcomeMessage: getConfig(currentScript, 'themeChatWindowWelcomeMessage', 'Bienvenido a Novotech, soy tu asistente virtual y estoy disponible 24/7. Hazme cualquier pregunta sobre nuestros espacios, características, zona, cualquier duda que tengas, estoy aquí para asistirte y ayudarte.'), // Default modificado
         themeChatWindowErrorMessage: getConfig(currentScript, 'themeChatWindowErrorMessage', 'Ocurrió un error.'),
         themeChatWindowBackgroundColor: getConfig(currentScript, 'themeChatWindowBackgroundColor', '#ffffff'),
         themeChatWindowBackgroundImage: getConfig(currentScript, 'themeChatWindowBackgroundImage', ''),
-        themeChatWindowHeight: getConfig(currentScript, 'themeChatWindowHeight', 600, 'number'),
-        themeChatWindowWidth: getConfig(currentScript, 'themeChatWindowWidth', 400, 'number'),
+        themeChatWindowHeight: getConfig(currentScript, 'themeChatWindowHeight', 450, 'number'), // Default modificado
+        themeChatWindowWidth: getConfig(currentScript, 'themeChatWindowWidth', 400, 'number'), // Default modificado
         themeChatWindowFontSize: getConfig(currentScript, 'themeChatWindowFontSize', 16, 'number'),
-        themeChatWindowStarterPrompts: getConfig(currentScript, 'themeChatWindowStarterPromptsJson', [], 'json'), // data-chat-window-starter-prompts-json
+        themeChatWindowStarterPrompts: getConfig(currentScript, 'themeChatWindowStarterPromptsJson', [], 'json'),
         themeChatWindowStarterPromptFontSize: getConfig(currentScript, 'themeChatWindowStarterPromptFontSize', 15, 'number'),
         themeChatWindowClearChatOnReload: getConfig(currentScript, 'themeChatWindowClearChatOnReload', false, 'boolean'),
         themeChatWindowSourceDocsTitle: getConfig(currentScript, 'themeChatWindowSourceDocsTitle', 'Fuentes:'),
@@ -102,20 +102,20 @@
         // Theme -> ChatWindow -> BotMessage
         themeBotMessageBackgroundColor: getConfig(currentScript, 'themeBotMessageBackgroundColor', '#f7f8ff'),
         themeBotMessageTextColor: getConfig(currentScript, 'themeBotMessageTextColor', '#303235'),
-        themeBotMessageShowAvatar: getConfig(currentScript, 'themeBotMessageShowAvatar', true, 'boolean'),
+        themeBotMessageShowAvatar: getConfig(currentScript, 'themeBotMessageShowAvatar', false, 'boolean'), // Default modificado
         themeBotMessageAvatarSrc: getConfig(currentScript, 'themeBotMessageAvatarSrc', ''),
         
         // Theme -> ChatWindow -> UserMessage
-        themeUserMessageBackgroundColor: getConfig(currentScript, 'themeUserMessageBackgroundColor', '#3B81F6'),
+        themeUserMessageBackgroundColor: getConfig(currentScript, 'themeUserMessageBackgroundColor', '#1e46e3'), // Default modificado
         themeUserMessageTextColor: getConfig(currentScript, 'themeUserMessageTextColor', '#ffffff'),
         themeUserMessageShowAvatar: getConfig(currentScript, 'themeUserMessageShowAvatar', true, 'boolean'),
-        themeUserMessageAvatarSrc: getConfig(currentScript, 'themeUserMessageAvatarSrc', ''),
+        themeUserMessageAvatarSrc: getConfig(currentScript, 'themeUserMessageAvatarSrc', 'https://mediastrapi.koppi.mx/uploads/user_3296_76696dc10f.svg'), // Default modificado
         
         // Theme -> ChatWindow -> TextInput
-        themeTextInputPlaceholder: getConfig(currentScript, 'themeTextInputPlaceholder', 'Escribe tu pregunta'),
+        themeTextInputPlaceholder: getConfig(currentScript, 'themeTextInputPlaceholder', 'Haz tu pregunta aquí'), // Default modificado
         themeTextInputBackgroundColor: getConfig(currentScript, 'themeTextInputBackgroundColor', '#ffffff'),
         themeTextInputTextColor: getConfig(currentScript, 'themeTextInputTextColor', '#303235'),
-        themeTextInputSendButtonColor: getConfig(currentScript, 'themeTextInputSendButtonColor', '#3B81F6'),
+        themeTextInputSendButtonColor: getConfig(currentScript, 'themeTextInputSendButtonColor', '#1e46e3'), // Default modificado
         themeTextInputMaxChars: getConfig(currentScript, 'themeTextInputMaxChars', 1000, 'number'),
         themeTextInputMaxCharsWarningMessage: getConfig(currentScript, 'themeTextInputMaxCharsWarningMessage', 'Límite de caracteres excedido.'),
         themeTextInputAutoFocus: getConfig(currentScript, 'themeTextInputAutoFocus', true, 'boolean'),
@@ -133,9 +133,9 @@
         
         // Theme -> ChatWindow -> Footer
         themeFooterTextColor: getConfig(currentScript, 'themeFooterTextColor', '#303235'),
-        themeFooterText: getConfig(currentScript, 'themeFooterText', 'Powered by'),
-        themeFooterCompany: getConfig(currentScript, 'themeFooterCompany', 'Flowise'),
-        themeFooterCompanyLink: getConfig(currentScript, 'themeFooterCompanyLink', 'https://flowiseai.com'),
+        themeFooterText: getConfig(currentScript, 'themeFooterText', 'POWERED BY'), // Default modificado
+        themeFooterCompany: getConfig(currentScript, 'themeFooterCompany', 'koppi'), // Default modificado
+        themeFooterCompanyLink: getConfig(currentScript, 'themeFooterCompanyLink', 'https://koppi.mx'), // Default modificado
     };
 
     if (!config.chatflowid) {
@@ -147,7 +147,7 @@
         return;
     }
 
-    let lottieTooltipElement = null; // Variable para el tooltip
+    let lottieTooltipElement = null;
 
     function createLottieTooltip() {
         if (!config.lottieTooltipEnabled || !config.lottieTooltipText) return null;
@@ -167,7 +167,7 @@
             zIndex: (parseInt(config.lottieButtonZIndex) + config.lottieTooltipZIndexOffset).toString(),
             transition: 'opacity 0.2s ease-in-out, visibility 0.2s ease-in-out',
             whiteSpace: 'nowrap',
-            pointerEvents: 'none' // El tooltip no debe interferir con los eventos del ratón
+            pointerEvents: 'none'
         });
         document.body.appendChild(el);
         return el;
@@ -186,46 +186,34 @@
         lottieButtonElement.style.zIndex = config.lottieButtonZIndex;
         document.body.appendChild(lottieButtonElement);
 
-        // Crear el tooltip si está habilitado
         if (config.lottieTooltipEnabled) {
             lottieTooltipElement = createLottieTooltip();
             if (lottieTooltipElement) {
                 lottieButtonElement.addEventListener('mouseenter', () => {
                     const lottieRect = lottieButtonElement.getBoundingClientRect();
-                    // Para que getBoundingClientRect() del tooltip devuelva dimensiones correctas,
-                    // lo hacemos visible temporalmente pero fuera de la pantalla o transparente.
-                    // O simplemente confiamos en que el texto ya está y las dimensiones son calculables.
-                    lottieTooltipElement.style.visibility = 'hidden'; // Aseguramos que esté oculto para recalcular
+                    lottieTooltipElement.style.visibility = 'hidden';
                     lottieTooltipElement.style.opacity = '0';
-
                     const tooltipRect = lottieTooltipElement.getBoundingClientRect();
-
-                    // Posicionar arriba del botón, centrado horizontalmente
                     let top = lottieRect.top - tooltipRect.height - config.lottieTooltipPositionOffset;
-                    if (top < 5) { // Si se sale por arriba, lo ponemos abajo
+                    if (top < 5) {
                         top = lottieRect.bottom + config.lottieTooltipPositionOffset;
                     }
-
                     let left = lottieRect.left + (lottieRect.width / 2) - (tooltipRect.width / 2);
-                    if (left < 5) left = 5; // Evitar que se salga por la izquierda
-                    if (left + tooltipRect.width > window.innerWidth - 5) { // Evitar que se salga por la derecha
+                    if (left < 5) left = 5;
+                    if (left + tooltipRect.width > window.innerWidth - 5) {
                         left = window.innerWidth - tooltipRect.width - 5;
                     }
-                    
                     lottieTooltipElement.style.top = `${top}px`;
                     lottieTooltipElement.style.left = `${left}px`;
-                    
                     lottieTooltipElement.style.visibility = 'visible';
                     lottieTooltipElement.style.opacity = '1';
                 });
-
                 lottieButtonElement.addEventListener('mouseleave', () => {
                     lottieTooltipElement.style.visibility = 'hidden';
                     lottieTooltipElement.style.opacity = '0';
                 });
             }
         }
-
 
         if (typeof lottie === 'undefined') {
             const lottieCdnScript = document.createElement('script');
@@ -243,8 +231,8 @@
                 Chatbot.init({
                     chatflowid: config.chatflowid,
                     apiHost: config.apiHost,
-                    chatflowConfig: config.chatflowConfig, // Ya parseado como objeto
-                    observersConfig: config.observersConfig, // Ya parseado como objeto
+                    chatflowConfig: config.chatflowConfig,
+                    observersConfig: config.observersConfig,
                     theme: {
                         button: {
                             backgroundColor: config.themeButtonBackgroundColor,
@@ -254,70 +242,16 @@
                             dragAndDrop: config.themeButtonDragAndDrop,
                             iconColor: config.themeButtonIconColor,
                             customIconSrc: config.themeButtonCustomIconSrc,
-                            autoWindowOpen: { // Forzado a false porque usamos Lottie
+                            autoWindowOpen: {
                                 autoOpen: false, 
                                 openDelay: config.themeButtonOpenDelay,
                                 autoOpenOnMobile: config.themeButtonAutoOpenOnMobile
                             }
                         },
-                        tooltip: { showTooltip: false }, // Deshabilitar el tooltip original de Flowise si lo tuviera
+                        tooltip: { showTooltip: false },
                         customCSS: `
-                /* Header del chat */
-                .chatbot-header {
-                    background: linear-gradient(90deg, #4e67eb 0%, #3cb371 100%) !important;
-                    padding: 16px !important;
-                    border-top-left-radius: 10px !important;
-                    border-top-right-radius: 10px !important;
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                }
-
-
-                /* Campo de entrada */
-                .chatbot-input {
-                    border-radius: 24px !important;
-                    margin: 10px !important;
-                    background-color: #f8f9fa !important;
-                    border: 1px solid #e9ecef !important;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-                    padding: 8px !important;
-                }
-
-            
-                /* Burbujas de mensaje del bot */
-                .chatbot-host-bubble {
-                    border-radius: 20px !important;
-                    padding: 12px 16px !important;
-                    max-width: 85% !important;
-                    margin-bottom: 8px !important;
-                    background-color: #f8f9fa !important;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
-                }
-
-                /* Burbujas de mensaje del usuario */
-                .chatbot-guest-bubble {
-                    border-radius: 20px !important;
-                    padding: 12px 16px !important;
-                    max-width: 85% !important;
-                    margin-bottom: 8px !important;
-                 
-                    color: white !important;
-                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
-                }
-
-                /* Contenedor del chat */
-                .chatbot-container {
-                    border-radius: 10px !important;
-                    overflow: hidden !important;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-                }
-
-                /* Scroll suave */
-                .chat-messages-container {
-                    scroll-behavior: smooth !important;
-                }
-            `,
+                            /* Tus estilos CSS personalizados aquí */
+                        `,
                         chatWindow: {
                             showTitle: config.themeChatWindowShowTitle,
                             showAgentMessages: config.themeChatWindowShowAgentMessages,
