@@ -261,7 +261,9 @@
                             }
                         },
                         tooltip: { showTooltip: false }, // Deshabilitar el tooltip original de Flowise si lo tuviera
-                        customCSS: ,
+                        customCSS: `
+                            /* Tus estilos CSS personalizados aquí */
+                        `,
                         chatWindow: {
                             showTitle: config.themeChatWindowShowTitle,
                             showAgentMessages: config.themeChatWindowShowAgentMessages,
