@@ -61,7 +61,7 @@
         lottieTooltipEnabled: getConfig(currentScript, 'lottieTooltipEnabled', true, 'boolean'),            // data-lottie-tooltip-enabled
         lottieTooltipText: getConfig(currentScript, 'lottieTooltipText', 'Abrir Chat'),                    // data-lottie-tooltip-text
         lottieTooltipBackgroundColor: getConfig(currentScript, 'lottieTooltipBackgroundColor', '#333333'),  // data-lottie-tooltip-background-color
-        lottieTooltipTextColor: getConfig(currentScript, 'lottieTooltipTextColor', '#ffffff'),              // data-lottie-tooltip-text-color
+        lottieTooltipTextColor: getConfig(currentScript, 'lottieTooltipTextColor', 'rgba(255, 255, 255, 0.05)'),              // data-lottie-tooltip-text-color
         lottieTooltipFontSize: getConfig(currentScript, 'lottieTooltipFontSize', '12px'),                  // data-lottie-tooltip-font-size
         lottieTooltipPadding: getConfig(currentScript, 'lottieTooltipPadding', '5px 10px'),                // data-lottie-tooltip-padding
         lottieTooltipBorderRadius: getConfig(currentScript, 'lottieTooltipBorderRadius', '4px'),           // data-lottie-tooltip-border-radius
@@ -88,7 +88,7 @@
         themeChatWindowTitleAvatarSrc: getConfig(currentScript, 'themeChatWindowTitleAvatarSrc', ''),
         themeChatWindowWelcomeMessage: getConfig(currentScript, 'themeChatWindowWelcomeMessage', '¡Hola!'),
         themeChatWindowErrorMessage: getConfig(currentScript, 'themeChatWindowErrorMessage', 'Ocurrió un error.'),
-        themeChatWindowBackgroundColor: getConfig(currentScript, 'themeChatWindowBackgroundColor', '#ffffff'),
+        themeChatWindowBackgroundColor: getConfig(currentScript, 'themeChatWindowBackgroundColor', '#rgba(255, 255, 255, 0.05)'),
         themeChatWindowBackgroundImage: getConfig(currentScript, 'themeChatWindowBackgroundImage', ''),
         themeChatWindowHeight: getConfig(currentScript, 'themeChatWindowHeight', 600, 'number'),
         themeChatWindowWidth: getConfig(currentScript, 'themeChatWindowWidth', 400, 'number'),
@@ -273,12 +273,15 @@
 
                 /* Contenedor específico del input */
                 .chatbot-container .w-full.px-5.pt-2.pb-1 {
-                    border-top: 2px solid rgba(255, 255, 255, 0.2) !important;
+                    border-top: 2px solid rgba(255, 255, 255, 0.25) !important;
                     padding-right: 20px !important;
-                    padding-left: 0px !important;
-                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) !important;
-                    backdrop-filter: blur(20px) saturate(180%) !important;
-                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                    padding-left: 10px !important;
+                    background: linear-gradient(135deg, 
+                        rgba(255, 255, 255, 0.12) 0%, 
+                        rgba(255, 255, 255, 0.08) 100%) !important;
+                    backdrop-filter: blur(25px) saturate(200%) !important;
+                    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
                 }
 
                 /* Campo de entrada - Liquid Glass */
