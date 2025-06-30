@@ -365,11 +365,11 @@
                     padding: 12px 16px !important;
                     max-width: 85% !important;
                     margin-bottom: 8px !important;
-                    background-color: rgba(248, 248, 250, 0) !important;
+                    background-color: rgba(40, 40, 45, 0.8) !important;
                     backdrop-filter: blur(10px) !important;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.36) !important;
                     color: white !important;
-                    border: 1px solid rgba(255, 255, 255, 0) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
                 }
 
                 /* Burbujas de mensaje del usuario */
@@ -378,7 +378,7 @@
                     padding: 12px 16px !important;
                     max-width: 85% !important;
                     margin-bottom: 8px !important;
-                    background-color: rgba(248, 248, 250, 0)  !important;
+                    background-color: rgba(60, 60, 70, 0.8) !important;
                     backdrop-filter: blur(10px) !important;
                     color: white !important;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
