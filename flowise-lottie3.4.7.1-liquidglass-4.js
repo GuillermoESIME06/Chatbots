@@ -378,7 +378,7 @@
                     padding: 12px 16px !important;
                     max-width: 85% !important;
                     margin-bottom: 8px !important;
-                    background-color: #f7cd46 !important;
+                    background-color: rgba(248, 248, 250, 0)  !important;
                     backdrop-filter: blur(10px) !important;
                     color: white !important;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
