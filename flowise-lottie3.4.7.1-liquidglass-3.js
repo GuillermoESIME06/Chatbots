@@ -271,57 +271,38 @@
                     height: 0 !important;
                 }
 
+                
                 /* Contenedor específico del input */
                 .chatbot-container .w-full.px-5.pt-2.pb-1 {
-                    border-top: 2px solid rgba(255, 255, 255, 0.25) !important;
+                    border-top: 2px solid rgba(255, 255, 255, 0.2) !important;
                     padding-right: 20px !important;
-                    padding-left: 10px !important;
-                    background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.12) 0%, 
-                        rgba(255, 255, 255, 0.08) 100%) !important;
-                    backdrop-filter: blur(25px) saturate(200%) !important;
-                    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
-                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+                    padding-left: 0px !important;
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) !important;
+                    backdrop-filter: blur(20px) saturate(180%) !important;
+                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
                 }
 
                 /* Campo de entrada - Liquid Glass */
                 .chatbot-input {
-                    border-radius: 28px !important;
-                    margin: 12px !important;
+                    border-radius: 24px !important;
+                    margin: 10px !important;
                     background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.18) 0%, 
-                        rgba(255, 255, 255, 0.10) 25%, 
-                        rgba(255, 255, 255, 0.15) 50%,
-                        rgba(255, 255, 255, 0.08) 75%,
-                        rgba(255, 255, 255, 0.14) 100%) !important;
-                    backdrop-filter: blur(30px) saturate(250%) brightness(1.15) !important;
-                    -webkit-backdrop-filter: blur(30px) saturate(250%) brightness(1.15) !important;
-                    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+                        rgba(255, 255, 255, 0.15) 0%, 
+                        rgba(255, 255, 255, 0.08) 50%, 
+                        rgba(255, 255, 255, 0.12) 100%) !important;
+                    backdrop-filter: blur(25px) saturate(200%) brightness(1.1) !important;
+                    -webkit-backdrop-filter: blur(25px) saturate(200%) brightness(1.1) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.25) !important;
                     box-shadow: 
-                        0 12px 40px rgba(0, 0, 0, 0.15),
-                        0 6px 20px rgba(0, 0, 0, 0.1),
-                        inset 0 2px 0 rgba(255, 255, 255, 0.4),
-                        inset 0 -1px 0 rgba(255, 255, 255, 0.2),
-                        0 0 0 1px rgba(255, 255, 255, 0.15) !important;
-                    padding: 2px !important;
+                        0 8px 32px rgba(0, 0, 0, 0.12),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                        0 0 0 0.5px rgba(255, 255, 255, 0.1) !important;
+                    padding: 1px !important;
                     color: white !important;
                     overflow: hidden !important;
                     scrollbar-width: none !important;
                     -ms-overflow-style: none !important;
                     position: relative !important;
-                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                }
-
-                .chatbot-input:focus,
-                .chatbot-input:focus-within {
-                    transform: translateY(-1px) !important;
-                    box-shadow: 
-                        0 16px 50px rgba(0, 0, 0, 0.2),
-                        0 8px 25px rgba(0, 0, 0, 0.15),
-                        inset 0 3px 0 rgba(255, 255, 255, 0.5),
-                        inset 0 -2px 0 rgba(255, 255, 255, 0.25),
-                        0 0 0 2px rgba(255, 255, 255, 0.4) !important;
-                    border: 2px solid rgba(255, 255, 255, 0.5) !important;
                 }
 
                 /* Efecto de brillo dinámico */
@@ -336,7 +317,7 @@
                         transparent, 
                         rgba(255, 255, 255, 0.2), 
                         transparent) !important;
-                    transition: left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+                    transition: left 0.5s ease !important;
                     z-index: 1 !important;
                 }
 
@@ -362,286 +343,62 @@
                     display: none !important;
                 }
 
-              
-
-                /* Efecto de ondas para las burbujas */
-                .chatbot-host-bubble::before,
-                .chatbot-guest-bubble::before {
-                    content: '' !important;
-                    position: absolute !important;
-                    top: -50% !important;
-                    left: -50% !important;
-                    width: 200% !important;
-                    height: 200% !important;
-                    background: radial-gradient(circle, 
-                        rgba(255, 255, 255, 0.1) 0%, 
-                        transparent 70%) !important;
-                    opacity: 0 !important;
-                    transition: opacity 0.3s ease !important;
-                    pointer-events: none !important;
-                    z-index: -1 !important;
+                /* Ocultar scrollbar en WebKit browsers (Chrome, Safari) */
+                .chatbot-input::-webkit-scrollbar {
+                    display: none !important;
                 }
 
-                .chatbot-host-bubble:hover::before,
-                .chatbot-guest-bubble:hover::before {
-                    opacity: 1 !important;
+                /* Ocultar scrollbar en textarea dentro del input */
+                .chatbot-input textarea {
+                    scrollbar-width: none !important; /* Firefox */
+                    -ms-overflow-style: none !important; /* Internet Explorer y Edge */
                 }
 
-                /* Contenedor del chat - Liquid Glass Principal */
-                .chatbot-container {
-                    border-radius: 28px !important;
-                    overflow: hidden !important;
-                    background: linear-gradient(145deg, 
-                        rgba(255, 255, 255, 0.18) 0%, 
-                        rgba(255, 255, 255, 0.08) 15%,
-                        rgba(255, 255, 255, 0.14) 30%,
-                        rgba(255, 255, 255, 0.06) 45%,
-                        rgba(255, 255, 255, 0.12) 60%,
-                        rgba(255, 255, 255, 0.09) 75%,
-                        rgba(255, 255, 255, 0.16) 90%,
-                        rgba(255, 255, 255, 0.10) 100%) !important;
-                    backdrop-filter: blur(60px) saturate(400%) brightness(1.3) contrast(1.15) hue-rotate(10deg) !important;
-                    -webkit-backdrop-filter: blur(60px) saturate(400%) brightness(1.3) contrast(1.15) hue-rotate(10deg) !important;
-                    box-shadow: 
-                        0 40px 120px rgba(0, 0, 0, 0.25),
-                        0 20px 60px rgba(0, 0, 0, 0.18),
-                        0 8px 30px rgba(0, 0, 0, 0.12),
-                        inset 0 3px 0 rgba(255, 255, 255, 0.5),
-                        inset 0 -3px 0 rgba(255, 255, 255, 0.2),
-                        inset 3px 0 0 rgba(255, 255, 255, 0.15),
-                        inset -3px 0 0 rgba(255, 255, 255, 0.15),
-                        0 0 0 1.5px rgba(255, 255, 255, 0.35) !important;
-                    border: 2.5px solid rgba(255, 255, 255, 0.4) !important;
-                    position: relative !important;
-                    transform: translateZ(0) !important;
-                    animation: liquidGlow 4s ease-in-out infinite alternate !important;
+                .chatbot-input textarea::-webkit-scrollbar {
+                    display: none !important;
                 }
 
-                /* Efectos de distorsión y reflexión múltiple */
-                .chatbot-container::before {
-                    content: '' !important;
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    right: 0 !important;
-                    bottom: 0 !important;
-                    background: 
-                        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 60%),
-                        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.3) 0%, transparent 60%),
-                        radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-                        linear-gradient(45deg, 
-                            rgba(255, 255, 255, 0.15) 0%, 
-                            transparent 25%,
-                            rgba(255, 255, 255, 0.08) 50%,
-                            transparent 75%,
-                            rgba(255, 255, 255, 0.12) 100%) !important;
-                    pointer-events: none !important;
-                    z-index: 1 !important;
-                    border-radius: 28px !important;
-                    animation: liquidShimmer 6s ease-in-out infinite alternate !important;
-                }
-
-                  /* Burbujas de mensaje del bot - Liquid Glass */
+            
+                /* Burbujas de mensaje del bot */
                 .chatbot-host-bubble {
-                    border-radius: 28px !important;
-                    padding: 14px 18px !important;
+                    border-radius: 20px !important;
+                    padding: 12px 16px !important;
                     max-width: 85% !important;
-                    margin-bottom: 10px !important;
-                    background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.14) 0%, 
-                        rgba(255, 255, 255, 0.08) 25%, 
-                        rgba(255, 255, 255, 0.12) 50%,
-                        rgba(255, 255, 255, 0.06) 75%,
-                        rgba(255, 255, 255, 0.10) 100%) !important;
-                    backdrop-filter: blur(25px) saturate(200%) brightness(1.1) !important;
-                    -webkit-backdrop-filter: blur(25px) saturate(200%) brightness(1.1) !important;
-                    box-shadow: 
-                        0 12px 40px rgba(0, 0, 0, 0.15),
-                        0 6px 20px rgba(0, 0, 0, 0.1),
-                        inset 0 2px 0 rgba(255, 255, 255, 0.3),
-                        inset 0 -1px 0 rgba(255, 255, 255, 0.1),
-                        0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+                    margin-bottom: 8px !important;
+                    background-color: rgba(248, 248, 250, 0) !important;
+                    backdrop-filter: blur(10px) !important;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.36) !important;
                     color: white !important;
-                    border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
-                    position: relative !important;
-                    overflow: hidden !important;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    border: 1px solid rgba(255, 255, 255, 0) !important;
                 }
 
-                .chatbot-host-bubble:hover {
-                    transform: translateY(-2px) !important;
-                    box-shadow: 
-                        0 16px 50px rgba(0, 0, 0, 0.2),
-                        0 8px 25px rgba(0, 0, 0, 0.15),
-                        inset 0 3px 0 rgba(255, 255, 255, 0.4),
-                        inset 0 -2px 0 rgba(255, 255, 255, 0.15),
-                        0 0 0 1.5px rgba(255, 255, 255, 0.3) !important;
-                }
-
-                /* Burbujas de mensaje del usuario - Liquid Glass */
+                /* Burbujas de mensaje del usuario */
                 .chatbot-guest-bubble {
-                    border-radius: 28px !important;
-                    padding: 14px 18px !important;
+                    border-radius: 20px !important;
+                    padding: 12px 16px !important;
                     max-width: 85% !important;
-                    margin-bottom: 10px !important;
-                    background: linear-gradient(135deg, 
-                        rgba(121, 127, 99, 0.95) 0%, 
-                        rgba(121, 127, 99, 0.75) 25%, 
-                        rgba(121, 127, 99, 0.85) 50%,
-                        rgba(121, 127, 99, 0.70) 75%,
-                        rgba(121, 127, 99, 0.90) 100%) !important;
-                    backdrop-filter: blur(25px) saturate(200%) !important;
-                    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
+                    margin-bottom: 8px !important;
+                    background-color: #f7cd46 !important;
+                    backdrop-filter: blur(10px) !important;
                     color: white !important;
-                    box-shadow: 
-                        0 12px 40px rgba(121, 127, 99, 0.4),
-                        0 6px 20px rgba(121, 127, 99, 0.3),
-                        inset 0 2px 0 rgba(255, 255, 255, 0.4),
-                        inset 0 -1px 0 rgba(255, 255, 255, 0.15),
-                        0 0 0 1px rgba(255, 255, 255, 0.25) !important;
-                    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
-                    position: relative !important;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                }
+
+                /* Contenedor del chat */
+                .chatbot-container {
+                    border-radius: 10px !important;
                     overflow: hidden !important;
-                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+                    background-color: rgba(0, 0, 0, 0.1) !important;
+                    backdrop-filter: blur(15px) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
                 }
 
-                .chatbot-guest-bubble:hover {
-                    transform: translateY(-2px) !important;
-                    box-shadow: 
-                        0 16px 50px rgba(121, 127, 99, 0.5),
-                        0 8px 25px rgba(121, 127, 99, 0.4),
-                        inset 0 3px 0 rgba(255, 255, 255, 0.5),
-                        inset 0 -2px 0 rgba(255, 255, 255, 0.2),
-                        0 0 0 1.5px rgba(255, 255, 255, 0.35) !important;
-                }
-                @keyframes liquidRotate {
-                    0% { transform: rotate(0deg) scale(1); }
-                    33% { transform: rotate(120deg) scale(1.05); }
-                    66% { transform: rotate(240deg) scale(0.95); }
-                    100% { transform: rotate(360deg) scale(1); }
-                }
-
-                @keyframes liquidGlow {
-                    0% { 
-                        box-shadow: 
-                            0 40px 120px rgba(0, 0, 0, 0.25),
-                            0 20px 60px rgba(0, 0, 0, 0.18),
-                            0 8px 30px rgba(0, 0, 0, 0.12),
-                            inset 0 3px 0 rgba(255, 255, 255, 0.5),
-                            inset 0 -3px 0 rgba(255, 255, 255, 0.2),
-                            inset 3px 0 0 rgba(255, 255, 255, 0.15),
-                            inset -3px 0 0 rgba(255, 255, 255, 0.15),
-                            0 0 0 1.5px rgba(255, 255, 255, 0.35);
-                    }
-                    100% { 
-                        box-shadow: 
-                            0 45px 130px rgba(0, 0, 0, 0.3),
-                            0 25px 70px rgba(0, 0, 0, 0.22),
-                            0 12px 40px rgba(0, 0, 0, 0.15),
-                            inset 0 4px 0 rgba(255, 255, 255, 0.6),
-                            inset 0 -4px 0 rgba(255, 255, 255, 0.25),
-                            inset 4px 0 0 rgba(255, 255, 255, 0.2),
-                            inset -4px 0 0 rgba(255, 255, 255, 0.2),
-                            0 0 0 2px rgba(255, 255, 255, 0.45);
-                    }
-                }
-
-                @keyframes liquidShimmer {
-                    0% { opacity: 0.8; }
-                    50% { opacity: 1; }
-                    100% { opacity: 0.6; }
-                }
-
-                /* Header con efecto cristal líquido */
-                .chatbot-header {
-                    background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.25) 0%, 
-                        rgba(255, 255, 255, 0.15) 50%,
-                        rgba(255, 255, 255, 0.20) 100%) !important;
-                    backdrop-filter: blur(35px) saturate(250%) brightness(1.1) !important;
-                    -webkit-backdrop-filter: blur(35px) saturate(250%) brightness(1.1) !important;
-                    border-bottom: 1.5px solid rgba(255, 255, 255, 0.2) !important;
-                    position: relative !important;
-                    z-index: 2 !important;
-                    box-shadow: 
-                        0 4px 15px rgba(0, 0, 0, 0.1),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
-                }
-
-                /* Contenedor específico del input con mejor integración */
-                .chatbot-container .w-full.px-5.pt-2.pb-1 {
-                    border-top: 2px solid rgba(255, 255, 255, 0.25) !important;
-                    padding-right: 20px !important;
-                    padding-left: 10px !important;
-                    background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.12) 0%, 
-                        rgba(255, 255, 255, 0.08) 100%) !important;
-                    backdrop-filter: blur(25px) saturate(200%) !important;
-                    -webkit-backdrop-filter: blur(25px) saturate(200%) !important;
-                    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-                }
-
-                /* Efectos de partículas flotantes */
-                .chatbot-container .chat-messages-container::before {
-                    content: '' !important;
-                    position: absolute !important;
-                    top: 0 !important;
-                    left: 0 !important;
-                    right: 0 !important;
-                    bottom: 0 !important;
-                    background-image: 
-                        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-                        radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.06) 1px, transparent 1px) !important;
-                    background-size: 50px 50px, 80px 80px, 120px 120px !important;
-                    animation: floatingParticles 15s linear infinite !important;
-                    pointer-events: none !important;
-                    z-index: 1 !important;
-                }
-
-                @keyframes floatingParticles {
-                    0% { transform: translateY(0px) translateX(0px); }
-                    33% { transform: translateY(-10px) translateX(5px); }
-                    66% { transform: translateY(5px) translateX(-3px); }
-                    100% { transform: translateY(0px) translateX(0px); }
-                }
-
-                /* Scroll suave con efectos */
+                /* Scroll suave */
                 .chat-messages-container {
                     scroll-behavior: smooth !important;
                     background-color: transparent !important;
-                    position: relative !important;
-                    z-index: 2 !important;
-                }
-
-                /* Animaciones suaves mejoradas */
-                .chatbot-container * {
-                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-                }
-
-                /* Efectos adicionales para texto */
-                .chatbot-host-bubble p,
-                .chatbot-guest-bubble p {
-                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
-                    line-height: 1.5 !important;
-                }
-
-                /* Botón de envío mejorado */
-                .chatbot-input button {
-                    background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.3) 0%, 
-                        rgba(255, 255, 255, 0.2) 100%) !important;
-                    backdrop-filter: blur(20px) !important;
-                    border-radius: 28px !important;
-                    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-                    transition: all 0.3s ease !important;
-                }
-
-                .chatbot-input button:hover {
-                    transform: scale(1.05) !important;
-                    background: linear-gradient(135deg, 
-                        rgba(255, 255, 255, 0.4) 0%, 
-                        rgba(255, 255, 255, 0.3) 100%) !important;
                 }
             `,
                         chatWindow: {
