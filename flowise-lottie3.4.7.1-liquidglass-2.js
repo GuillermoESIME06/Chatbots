@@ -18,7 +18,7 @@
             try {
                 return JSON.parse(value);
             } catch (e) {
-                console.error(`Flowise Lottie Embed: Error al parsear JSON para ${dataKey}. Usando default. Valor recibido:`, value, e);
+                console.error(`ECO Lottie Embed: Error al parsear JSON para ${dataKey}. Usando default. Valor recibido:`, value, e);
                 return defaultValue;
             }
         }
@@ -37,7 +37,7 @@
     }
 
     if (!currentScript) {
-        console.error("Flowise Lottie Embed: No se pudo encontrar la etiqueta del script. Asegúrate de que tenga un ID 'flowise-lottie-embed-script' o que su 'src' incluya 'flowise-lottie'.");
+        console.error("ECO Lottie Embed: No se pudo encontrar la etiqueta del script. Asegúrate de que tenga un ID 'flowise-lottie-embed-script' o que su 'src' incluya 'flowise-lottie'.");
         return;
     }
 
@@ -69,7 +69,7 @@
         lottieTooltipPositionOffset: getConfig(currentScript, 'lottieTooltipPositionOffset', 8, 'number'), // data-lottie-tooltip-position-offset (px above button)
 
 
-        // Theme -> Button (original Flowise button)
+        // Theme -> Button (original ECO button)
         themeButtonBackgroundColor: getConfig(currentScript, 'themeButtonBackgroundColor', '#3B81F6'),
         themeButtonRight: getConfig(currentScript, 'themeButtonRight', 20, 'number'),
         themeButtonBottom: getConfig(currentScript, 'themeButtonBottom', 20, 'number'),
@@ -134,16 +134,16 @@
         // Theme -> ChatWindow -> Footer
         themeFooterTextColor: getConfig(currentScript, 'themeFooterTextColor', '#ffffff'),
         themeFooterText: getConfig(currentScript, 'themeFooterText', 'Powered by'),
-        themeFooterCompany: getConfig(currentScript, 'themeFooterCompany', 'Flowise'),
-        themeFooterCompanyLink: getConfig(currentScript, 'themeFooterCompanyLink', 'https://flowiseai.com'),
+        themeFooterCompany: getConfig(currentScript, 'themeFooterCompany', 'koppi'),
+        themeFooterCompanyLink: getConfig(currentScript, 'themeFooterCompanyLink', 'https://koppi.mx'),
     };
 
     if (!config.chatflowid) {
-        console.error("Flowise Lottie Embed: 'data-chatflowid' es requerido.");
+        console.error("ECO Lottie Embed: 'data-chatflowid' es requerido.");
         return;
     }
     if (!config.lottieAnimationPath) {
-        console.error("Flowise Lottie Embed: 'data-lottie-animation-path' es requerido.");
+        console.error("ECO Lottie Embed: 'data-lottie-animation-path' es requerido.");
         return;
     }
 
@@ -231,7 +231,7 @@
             const lottieCdnScript = document.createElement('script');
             lottieCdnScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
             lottieCdnScript.onload = () => setupLottieAnimation(lottieButtonElement);
-            lottieCdnScript.onerror = () => console.error("Flowise Lottie Embed: Falló la carga de Lottie desde CDN.");
+            lottieCdnScript.onerror = () => console.error("ECO Lottie Embed: Falló la carga de Lottie desde CDN.");
             document.head.appendChild(lottieCdnScript);
         } else {
             setupLottieAnimation(lottieButtonElement);
@@ -260,9 +260,9 @@
                                 autoOpenOnMobile: config.themeButtonAutoOpenOnMobile
                             }
                         },
-                        tooltip: { showTooltip: false }, // Deshabilitar el tooltip original de Flowise si lo tuviera
+                        tooltip: { showTooltip: false }, // Deshabilitar el tooltip original de ECO si lo tuviera
                         customCSS: `
-                        /* Ocultar completamente el botón original de Flowise */
+                        /* Ocultar completamente el botón original de ECO */
                 [part="button"] {
                     display: none !important;
                     visibility: hidden !important;
@@ -479,7 +479,7 @@
                 });
                 setTimeout(() => tryHidingFlowiseButton(0), 300);
             })
-            .catch(err => console.error("Flowise Lottie Embed: Falló la carga del script de Flowise.", err));
+            .catch(err => console.error("ECO Lottie Embed: Falló la carga del script de Flowise.", err));
     }
 
     function setupLottieAnimation(lottieButtonElement) {
@@ -496,9 +496,9 @@
             if (flowiseElement && flowiseElement.shadowRoot) {
                 const internalButton = flowiseElement.shadowRoot.querySelector('[part="button"]');
                 if (internalButton) internalButton.click();
-                else console.warn('Flowise Lottie Embed: Botón interno (part="button") no encontrado para clic.');
+                else console.warn('ECO Lottie Embed: Botón interno (part="button") no encontrado para clic.');
             } else {
-                console.warn('Flowise Lottie Embed: <flowise-chatbot> o shadowRoot no encontrado para clic.');
+                console.warn('ECO Lottie Embed: <flowise-chatbot> o shadowRoot no encontrado para clic.');
             }
         });
     }
@@ -506,7 +506,7 @@
     function tryHidingFlowiseButton(attemptCount) {
         const maxAttempts = 20;
         if (attemptCount >= maxAttempts) {
-            console.error("Flowise Lottie Embed: Máximos intentos para ocultar botón original.");
+            console.error("ECO Lottie Embed: Máximos intentos para ocultar botón original.");
             return;
         }
         const flowiseElement = document.querySelector('flowise-chatbot');
@@ -517,7 +517,7 @@
                     display: 'none', visibility: 'hidden', width: '0px', height: '0px',
                     opacity: '0', padding: '0', margin: '0', border: 'none', pointerEvents: 'none'
                 });
-                console.log("Flowise Lottie Embed: Botón original ocultado vía JS.");
+                console.log("ECO Lottie Embed: Botón original ocultado vía JS.");
             } else { setTimeout(() => tryHidingFlowiseButton(attemptCount + 1), 500); }
         } else { setTimeout(() => tryHidingFlowiseButton(attemptCount + 1), 500); }
     }
