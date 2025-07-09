@@ -261,7 +261,8 @@
                             }
                         },
                         tooltip: { showTooltip: false }, // Deshabilitar el tooltip original de Flowise si lo tuviera
-                        customCSS: `/* Ocultar completamente el botón original de Flowise */
+                        customCSS: `
+                        /* Ocultar completamente el botón original de Flowise */
                 [part="button"] {
                     display: none !important;
                     visibility: hidden !important;
@@ -319,6 +320,23 @@
                         transparent) !important;
                     transition: left 0.5s ease !important;
                     z-index: 1 !important;
+                }
+                  .chatbot-input:hover {
+                    border-color: rgba(245, 245, 245, 0.6) !important;
+                    box-shadow: 
+                        0 16px 50px rgba(0, 0, 0, 0.2),
+                        0 0 0 2px rgba(252, 248, 232, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+                    transform: translateY(-1px) !important;
+                }
+
+                .chatbot-input:focus-within {
+                    border-color: rgba(255, 255, 255, 0.8) !important;
+                    box-shadow: 
+                        0 20px 60px rgba(0, 0, 0, 0.25),
+                        0 0 0 3px rgba(252, 248, 232, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+                    transform: translateY(-2px) !important;
                 }
 
                 .chatbot-input:hover::before {
