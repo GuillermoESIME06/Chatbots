@@ -44,7 +44,7 @@
     const config = {
         // Core Flowise
         chatflowid: getConfig(currentScript, 'chatflowid', null),
-        apiHost: getConfig(currentScript, 'apiHost', 'ecoflow.koppi.mx'),
+        apiHost: getConfig(currentScript, 'apiHost', 'https://ecoflow.koppi.mx'),
         chatflowConfig: getConfig(currentScript, 'chatflowConfigJson', {}, 'json'), // data-chatflow-config-json
         observersConfig: getConfig(currentScript, 'observersConfigJson', {}, 'json'), // data-observers-config-json
 
